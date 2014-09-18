@@ -5,8 +5,8 @@ $email = $_GET['login'];
 // Definindo a configuração com o gerenciador mysql
 $server = 'localhost';
 $user = 'root';
-$password = '';
-$database = 'teste_1';
+$password = 'terceiraface';
+$database = 'banco3faces';
 //Estabelecendo a conexão e selecionando o banco de dados 
 $connection = mysql_connect($server,$user,$password);
 mysql_select_db($database,$connection);

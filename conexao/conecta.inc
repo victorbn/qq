@@ -3,8 +3,8 @@
 
 $server = 'localhost';
 $user = 'root';
-$password = 'LGn2XrGsjZvLyMuV';
-$database = 'login';
+$password = 'terceiraface';
+$database = 'camelao';
 
 
 $connection = mysql_connect($server,$user,$password);

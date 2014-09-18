@@ -1,3 +1,6 @@
+
+
+
 <!doctype html>
 <html>
     <head>
@@ -21,9 +24,10 @@
             <input type="submit" value="Login">
             </form>
         <a href="frmcadastro.php">Cadastre-se</a>
+        <a href="recsenha.php">Recuperar senha</a>
         </div>
         
-  
+    
                  
 </body>
 </html>

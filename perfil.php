@@ -1,47 +1,41 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title> Formulário</title>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="#">
-    </head>    
-    <body>
-        <?php
-              include 'conexao/conecta.inc';
-              $codigo_usuario = $_REQUEST['codigo'];
-              
-              //echo '<h1>'.$codigo_usuario.'</h1>';
-              $sql = "SELECT * FROM usuario WHERE COD_USUARIO ='$codigo_usuario'";
-              $result = mysql_query($sql);
-              $usuarios = mysql_fetch_array($result);
-        ?>
-        
-        <form action="atualizarUsuario.php" method="post">
-           Nome: <input type="text" name="nome" required  value="<?php echo $usuarios['NOME_USUARIO'] ?>"> <br/>
-           Senha: <input type="password" name="senha" required value="<?php echo $usuarios['SENHA_USUARIO']?>"> <br/>
-           Email: <input type="email" name="email" required value="<?php echo $usuarios['EMAIL_USUARIO']?>"> <br/>
-           Tipo de usuário:
-              <select name="tipo">
-           <?php 
-              $tipo = $usuarios['TIPO_USUARIO'];
-               if($tipo === 'ADM')
-               {
-                   echo '<option selected> ADM </option>';
-                   echo '<option> RES </option>';
-               }
-               else
-               {
-                 echo '<option selected> RES </option>';  
-                 echo '<option> ADM </option>';
-               }
-              ?>
-            </select> <br/>
-           CPF: <input type="text" name="cpf" required><br/>
-           Logradouro: <input type="text" name="endereco" required> <br/>
-           CEP: <input type="text" name="cep" required><br/>
-           <input type="submit" value="Cadastrar" >
-           </form>
-        
-        
-    </body>
-</html>
+<?php
+include 'conexao/conecta.inc';
+session_start();
+
+
+
+$email=$_SESSION['email'];
+$nome=$_SESSION['nome'];
+
+
+
+
+$consulta=("SELECT * FROM usuario WHERE  EMAIL_USUARIO ='$email' AND NOME_USUARIO ='$nome'  ");
+
+$sql = mysql_query($consulta);
+
+
+
+$ir=  mysql_fetch_assoc($sql);
+         
+echo ' 
+   
+    
+     Nome: '.$ir['NOME_USUARIO'] .'<br> </br>
+     Email: '.$ir['EMAIL_USUARIO'] .'<br> </br>
+      
+    
+
+     
+
+         
+    
+    
+    
+    ';
+ 
+ echo '<a href=editaperfil.php>Edita</a>'.'<br>';
+  echo '<a href=editaimg.php>Inserir imagem</a>'.'<br>';
+echo '<a href=indexrestrito.php>volta para index</a>';
+
+?>

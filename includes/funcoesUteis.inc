@@ -4,24 +4,26 @@
      echo '<meta charset="UTF-8">';
      session_start();
  if(!isset($_SESSION['email']) or !isset($_SESSION['senha'])){
+     
      session_destroy();
  echo '<script> 
              alert("Acesso Negado !\n Você não efetuou login.")
-             location.href="'.$link.'"
+             location.href="frmlogin.php"
             </script>'; 
  }else{
-     if($tipo === 'RES'){include_once 'conexao/conecta.inc';}
-     if($tipo === 'ADM'){include_once 'conexao/conecta.inc';}
+     if($tipo === '1'){include_once 'conexao/conecta.inc';}
+     if($tipo === '2'){include_once 'conexao/conecta.inc';}
      $email = $_SESSION['email'];
      $senha = $_SESSION['senha'];
-     $query = "SELECT * FROM usuario_normal WHERE EMAIL_USUARIO='$email'";
+     $query = "SELECT * FROM usuario WHERE EMAIL_USUARIO='$email'";  
+
      $result = mysql_query($query);
      $totalUsuario = mysql_num_rows($result);
      if($totalUsuario == 0){
          $usuario = mysql_fetch_array($result);
          $senhaBanco = $usuario['SENHA_USUARIO'];
          $tipoBanco = $usuario['TIPO_USUARIO'];
-         if($senha !== $senhaBanco){
+         if($senha != $senhaBanco){
              session_destroy();
               echo '<script> 
              alert("Acesso Negado !\n Sua senha não confere.")
@@ -35,7 +37,7 @@
   
                }
             /* @var $tipo type */
-            if($tipo !== $tipoBanco){
+            if($tipo != $tipoBanco){
          session_destroy();
          echo '<script> 
              alert("Acesso Negado !\n Você não tem permissão de Acesso.")
